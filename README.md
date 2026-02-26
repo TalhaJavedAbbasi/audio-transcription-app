@@ -94,6 +94,8 @@ Open in browser:
 ```bash
 http://127.0.0.1:8000
 ```
+
+---
 ## 📡 API Endpoints
 ### POST /upload
 
@@ -109,6 +111,7 @@ Uploads an audio file for transcription.
 
 - Transcribed text with timestamps
 
+---
 ## 🧠 Design Decisions
 ### ✅ Local Model (faster-whisper)
 
@@ -141,6 +144,7 @@ Batch size and compute type can be adjusted for performance optimization.
 
 - Adjustable batch_size for parallel chunk processing
 
+---
 ## 📦 Scalability Considerations (Future Improvements)
 
 For production-scale deployment:
@@ -156,7 +160,7 @@ For production-scale deployment:
   - Implement authentication and rate limiting
 
   - Deploy behind load balancer with multiple workers
-
+---
 ## ⚠️ Limitations
 
 - Currently runs on a single instance
@@ -166,7 +170,7 @@ For production-scale deployment:
 - No persistent database storage in the prototype
 
 - Large files may increase processing time on CPU-only systems
-
+---
 ## 🔮 Future Enhancements
 
 - Streaming transcription
@@ -180,7 +184,7 @@ For production-scale deployment:
 - Cloud deployment
 
 - GPU acceleration support
-
+---
 ## 👤 Author
 
 Talha Abbasi
