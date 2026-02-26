@@ -43,6 +43,11 @@
         function showLoading() {
             document.getElementById("loading").style.display = "block";
         }
+
+        function prepareDownload() {
+            const segments = {{ segments | default([]) | tojson }};
+            document.getElementById("segments_json").value = JSON.stringify(segments);
+        }
     </script>
 </head>
 <body>
@@ -74,6 +79,12 @@
                 {{ segment.text }}
             </div>
         {% endfor %}
+
+        <!-- JSON Download Button -->
+        <form action="/download_json" method="post">
+            <input type="hidden" name="segments_json" id="segments_json">
+            <button type="submit" onclick="prepareDownload()">Download JSON</button>
+        </form>
     {% endif %}
 </div>
 
