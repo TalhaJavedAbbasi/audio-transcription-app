@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faster Whisper Transcription</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-top: 10px;
+        }
+
+        .segment {
+            margin-top: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .loading {
+            color: blue;
+            font-weight: bold;
+            display: none;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+
+    <script>
+        function showLoading() {
+            document.getElementById("loading").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Audio Transcription (Faster-Whisper)</h2>
+
+    <form action="/transcribe" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+        <input type="file" name="file" required>
+        <br>
+        <button type="submit">Transcribe</button>
+    </form>
+
+    <div id="loading" class="loading">
+        Processing audio... Please wait.
+    </div>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if segments %}
+        <h3>Detected Language: {{ language }}</h3>
+        <h3>Transcription Result:</h3>
+
+        {% for segment in segments %}
+            <div class="segment">
+                <strong>{{ segment.start }} → {{ segment.end }}</strong><br>
+                {{ segment.text }}
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+</body>
+</html>
